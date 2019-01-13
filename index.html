@@ -7,16 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Disney Guessing Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Mouse+Memoirs" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Mouse+Memoirs" rel="stylesheet">
+    <!-- custom css  -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body class="d-flex flex-column h-100">
     <div id="header_block">
 
-        
+
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="#"><img class="header_image" id="title_image" src="assets/images/guessing_game_header.png" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -31,48 +34,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">New Game</a>
                     </li>
+                </ul>
             </div>
         </nav>
-    </div> <!--End header block -->
+    </div>
+    <!--End header block -->
 
-    <div class="guessing_game">
-        <div id="hm_pic" class="hangman_picture">
+    <div class="guessing_game row">
+        <div id="hm_pic" class="hangman_picture col-sm-6">
             <img id="game_state_img" src="assets/images/hangman_status_0.jpg" />
         </div>
-
-       
-
-        </div>
-        <div id="hm_pic" class="hangman_picture">
-
-        </div>
-        <div id="hm_txt" class="hangman_text">
+        <div id="hm_txt" class="hangman_text col-sm-6">
             <h2 class="game_txt_header">Guess the disney-themed word:</h2><br />
-            Current Word:
-
-
-
+            <h3>Current Word: <span id="current_word"></span></h3><br>
+            <h3>Wrong Guesses:<span id="wrong_guess"></span></h3><br>
+            <h3>Number of Wrong Guesses: <span id="wrong_guesses">0</span></h3>
         </div>
+    </div>
 
-        <!-- document.onkeyup = function(event){
-
-    } -->
-
-
-
-
-
-
-
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-            crossorigin="anonymous"></script>
-        <script type="text/javascript" src="game.js></script"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js" type="text/javascript"></script>
 
 
 </body>

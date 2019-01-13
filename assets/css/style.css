@@ -1,3 +1,9 @@
 body {
-    font-family: 'Mouse Memoires', sans-serif;
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: white;
+    background-color: #2a4160;
+}
+
+.guessing_game {
+    margin-top: 120px
 }
