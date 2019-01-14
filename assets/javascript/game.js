@@ -3,11 +3,14 @@ var the_game = {
     word_dictionary: ["Aladdin", "Mufasa", "Cars", "Jasmin"],
     current_word: "",
     display_word: "",
-    all_guesses: [],
+    wrong_guesses: [],
+    correct_guesses: [],
     hangman_status: 0,
+    game_state: "new_game",
     num_wins : 0,
     num_losses: 0, 
-    game_state: "new_game",
+    hangman_img_prefix : "assets/images/hangman_status_",
+    game_image: document.getElementById("game_state_img"),    
     init_game: function () {
         num_guesses = 0;
         word_dictionary = ["Aladdin", "Mufasa", "Cars", "Jasmin"];
@@ -17,6 +20,7 @@ var the_game = {
         for (x = 0; x < this.current_word.length; x++) {
             this.display_word += "_"; //for each letter in display word, set to underscore
         }
+
         document.getElementById("current_word").innerHTML = this.display_word;
         this.all_guesses = [];
         this.hangman_status = 0;
@@ -29,8 +33,8 @@ var the_game = {
             hangman_status_5.jpg = hangman head, body, r_arm, l_arm, r_leg
             hangman_status_6.jpg = hangman head, body, r_arm, l_arm, r-leg, l_leg (game over)
         */
-        hangman_img_prefix = "assets/images/hangman_status_";
-        document.getElementById("game_state_img").src = hangman_img_prefix + this.hangman_status + ".jpg";
+      
+        document.getElementById("game_state_img").src = this.hangman_img_prefix + this.hangman_status + ".jpg";
 
         this.game_state = "new_game"
 
@@ -44,15 +48,53 @@ var the_game = {
         var keypressed = key.toLowerCase();
         var temp_current_word = this.current_word.toLowerCase();
         var guessed_correctly = false;
-        for (x = 0; x < this.current_word.length -1; x++) {
-            if (temp_current_word.charAt(x) === keypressed) {
+        var already_guessed = false;
+        for (x = 0; x < this.current_word.length; x++) {
+            if (temp_current_word.charAt(x) === keypressed) 
+            {
                 console.log("checking if " + temp_current_word.charAt(x) + " = " + keypressed)
                 guessed_correctly = true;
-                
+                this.correct_guesses.push(x);
+
             }    
         }
+        if (guessed_correctly == false) {
+            for (x = 0; x < this.wrong_guesses.length; x++) {
+                if(this.wrong_guesses[x] == keypressed) {
+                    already_guessed = true;
+                }
+            }
+            if(already_guessed == false) {
+                this.wrong_guesses.push(keypressed);
+            }
+        }
+        console.log("right guesses:" + this.correct_guesses);
+        console.log("wrong guesses:" + this.wrong_guesses);
+        document.getElementById("current_word").innerHTML = this.display_word;
+        this.update_ui();
+    },
+    update_ui: function() {
+        this.display_word = "";
+        for (x = 0; x < this.current_word.length; x++) {
+            if (this.correct_guesses.includes(x)) {
+                this.display_word += this.current_word.charAt(x);
+            }
+            else this.display_word += "_";
+        }
+        document.getElementById("current_word").innerHTML = this.display_word;
+        document.getElementById("num_wrong_guesses").innerHTML = this.wrong_guesses.length;
+        var temp_wrong_string = "";
+        for (x = 0; x < this.wrong_guesses.length; x++) {
+            temp_wrong_string += this.wrong_guesses[x];
+            if ((x != this.wrong_guesses.length -1) && (this.wrong_guesses.length > 1))
+            {
+                temp_wrong_string += ", ";
+            }
+        }
+        document.getElementById("wrong_guesses").innerHTML = temp_wrong_string;
+        this.hangman_status = this.wrong_guesses.length;
+        document.getElementById("game_state_img").src = this.hangman_img_prefix + this.hangman_status + ".jpg";
     }
-
 }
 
 
